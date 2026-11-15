@@ -1,0 +1,6 @@
+zone,date,supplied_litres,consumed_litres,inlet_flow,outlet_flow,pressure
+Zone A,2026-01-01,10000,9200,120,110,45
+Zone B,2026-01-01,12000,10500,140,120,38
+Zone C,2026-01-01,15000,13000,160,145,42
+Zone D,2026-01-01,10000,6000,130,80,25
+Zone E,2026-01-01,9000,8500,100,95,44

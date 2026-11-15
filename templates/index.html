@@ -1,0 +1,619 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AquaSentinel | Water Intelligence Dashboard</title>
+
+    <meta name="description"
+          content="AquaSentinel water-loss monitoring and conservation decision support dashboard.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">A</div>
+
+            <div>
+                <h2>AquaSentinel</h2>
+                <span>Water Intelligence</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <a href="#overview" class="nav-link active">
+                <span>▦</span> Overview
+            </a>
+
+            <a href="#zones" class="nav-link">
+                <span>◈</span> Zone Monitoring
+            </a>
+
+            <a href="#anomalies" class="nav-link">
+                <span>⚠</span> Anomaly Detection
+            </a>
+
+            <a href="#repairs" class="nav-link">
+                <span>⌁</span> Repair Validation
+            </a>
+
+            <a href="#advisories" class="nav-link">
+                <span>✦</span> Recommendations
+            </a>
+
+            <a href="#household" class="nav-link">
+                <span>⌂</span> Household Advisory
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="status-indicator"></div>
+            <span>System Dashboard</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+        <header class="topbar">
+
+            <div>
+                <p class="breadcrumb">Water Management / Dashboard</p>
+
+                <h1>Dashboard Overview</h1>
+
+                <p class="subtitle">
+                    Monitor water distribution, detect losses and
+                    improve conservation decisions.
+                </p>
+            </div>
+
+            <div class="header-actions">
+
+                <span class="system-status">
+                    <span class="status-indicator"></span>
+                    System Online
+                </span>
+
+                <button id="refreshBtn" class="refresh-btn">
+                    ↻ Refresh Data
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ERROR MESSAGE -->
+        <div id="errorMessage" class="error-message" hidden>
+            Unable to load dashboard data. Please check the server.
+        </div>
+
+
+        <!-- LOADING MESSAGE -->
+        <div id="loadingMessage" class="loading-message">
+            Loading AquaSentinel data...
+        </div>
+
+
+        <!-- DASHBOARD CONTENT -->
+        <div id="dashboardContent" hidden>
+
+
+            <!-- OVERVIEW -->
+            <section id="overview" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Water Distribution Overview</h2>
+                        <p>Current dataset performance summary</p>
+                    </div>
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <div class="stat-icon blue">↓</div>
+
+                        <p>Total Supplied</p>
+
+                        <h2 id="totalSupplied">--</h2>
+
+                        <span>Litres of water supplied</span>
+                    </article>
+
+
+                    <article class="stat-card">
+                        <div class="stat-icon green">✓</div>
+
+                        <p>Total Consumed</p>
+
+                        <h2 id="totalConsumed">--</h2>
+
+                        <span>Litres of water consumed</span>
+                    </article>
+
+
+                    <article class="stat-card">
+                        <div class="stat-icon orange">!</div>
+
+                        <p>Estimated Water Loss</p>
+
+                        <h2 id="totalLoss">--</h2>
+
+                        <span>Litres of estimated loss</span>
+                    </article>
+
+
+                    <article class="stat-card">
+                        <div class="stat-icon purple">%</div>
+
+                        <p>Loss Percentage</p>
+
+                        <h2 id="lossPercentage">--</h2>
+
+                        <span>Overall estimated loss</span>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ZONE MONITORING -->
+            <section id="zones" class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Zone Monitoring</h2>
+                        <p>Water distribution performance by zone</p>
+                    </div>
+
+                    <span class="section-tag">
+                        Illustrative Sample Dataset
+                    </span>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Zone</th>
+                                    <th>Supplied (L)</th>
+                                    <th>Consumed (L)</th>
+                                    <th>Water Loss (L)</th>
+                                    <th>Loss (%)</th>
+                                    <th>Avg Pressure</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="zoneTableBody">
+
+                                <tr>
+                                    <td colspan="6">
+                                        Loading zone information...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ANOMALY DETECTION -->
+            <section id="anomalies" class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Anomaly Detection</h2>
+                        <p>Zones identified through rule-based analysis</p>
+                    </div>
+
+                </div>
+
+
+                <div class="anomaly-summary">
+
+                    <article class="mini-card">
+                        <span>Total Zones</span>
+                        <h2 id="totalZones">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Suspicious Zones</span>
+                        <h2 id="suspiciousZones">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>High Risk</span>
+                        <h2 id="highRiskZones">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Normal Zones</span>
+                        <h2 id="normalZones">--</h2>
+                    </article>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h3>Zone Risk Assessment</h3>
+                        <span>Detection Results</span>
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Zone</th>
+                                    <th>Loss (%)</th>
+                                    <th>Pressure</th>
+                                    <th>Flow Difference</th>
+                                    <th>Risk Level</th>
+                                    <th>Reason</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="anomalyTableBody">
+
+                                <tr>
+                                    <td colspan="6">
+                                        Loading anomaly results...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- REPAIR VALIDATION -->
+            <section id="repairs" class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Historical Repair Validation</h2>
+                        <p>
+                            Comparison with previously recorded repair cases
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="repair-summary">
+
+                    <article class="mini-card">
+                        <span>Historically Confirmed</span>
+                        <h2 id="confirmedRepairs">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>No Historical Record</span>
+                        <h2 id="noRepairHistory">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Not Confirmed</span>
+                        <h2 id="notConfirmed">--</h2>
+                    </article>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h3>Repair Evidence</h3>
+                        <span>Historical Records</span>
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Zone</th>
+                                    <th>Historical Records</th>
+                                    <th>Confirmed Leaks</th>
+                                    <th>Pending Repairs</th>
+                                    <th>Validation Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="repairTableBody">
+
+                                <tr>
+                                    <td colspan="5">
+                                        Loading repair records...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONSERVATION RECOMMENDATIONS -->
+            <section id="advisories" class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Conservation Recommendations</h2>
+                        <p>
+                            Suggested corrective actions based on detected conditions
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="advisory-summary">
+
+                    <article class="mini-card">
+                        <span>Total Recommendations</span>
+                        <h2 id="totalRecommendations">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Critical Priority Zones</span>
+                        <h2 id="criticalAdvisories">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>High Priority Zones</span>
+                        <h2 id="highAdvisories">--</h2>
+                    </article>
+
+                </div>
+
+
+                <!-- JS WILL RENDER ZONE ADVISORIES HERE -->
+                <div id="advisoryContainer" class="advisory-grid">
+
+                    <p>Loading recommendations...</p>
+
+                </div>
+
+
+                <!-- DECISION SUPPORT INFORMATION -->
+                <div class="panel decision-info">
+
+                    <div class="panel-header">
+                        <h3>Utility-Based Decision Support</h3>
+                        <span>Decision Explanation</span>
+                    </div>
+
+                    <div class="panel-body">
+                        <p>
+                            AquaSentinel assigns a priority score using
+                            water-loss percentage, pressure readings,
+                            flow differences and historical repair evidence.
+                        </p>
+
+                        <p>
+                            Higher scores indicate that a zone may need
+                            earlier investigation. These scores support
+                            human decision-making and do not represent
+                            actual water savings.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HOUSEHOLD ADVISORY -->
+            <section id="household" class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Household Water Conservation Advisory</h2>
+
+                        <p>
+                            Find practical suggestions to reduce
+                            unnecessary household water usage.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="panel household-panel">
+
+                    <div class="panel-header">
+                        <h3>Ask AquaSentinel</h3>
+                        <span>Knowledge-Based Guidance</span>
+                    </div>
+
+
+                    <form id="householdAdvisoryForm"
+                          class="household-form">
+
+                        <label for="householdQuery">
+                            What would you like help with?
+                        </label>
+
+                        <div class="household-input-group">
+
+                            <input
+                                type="text"
+                                id="householdQuery"
+                                name="query"
+                                placeholder="Example: How can I save water while bathing?"
+                                maxlength="250"
+                                required
+                            >
+
+                            <button
+                                type="submit"
+                                id="householdSubmitBtn"
+                                class="refresh-btn"
+                            >
+                                Get Suggestions
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <div id="householdLoading"
+                         class="loading-message"
+                         hidden>
+                        Finding relevant water-saving suggestions...
+                    </div>
+
+
+                    <div id="householdError"
+                         class="error-message"
+                         hidden>
+                        Unable to retrieve suggestions. Please try again.
+                    </div>
+
+
+                    <div id="householdResult"
+                         class="household-result"
+                         aria-live="polite">
+
+                        <p>
+                            Enter a household water-related question
+                            to receive practical conservation guidance.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- DATA QUALITY -->
+            <section id="dataQuality" class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Data Quality Status</h2>
+                        <p>Validation of incoming water readings</p>
+                    </div>
+
+                </div>
+
+
+                <div class="quality-grid">
+
+                    <article class="mini-card">
+                        <span>Total Records</span>
+                        <h2 id="qualityTotal">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Valid Records</span>
+                        <h2 id="qualityValid">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Invalid Records</span>
+                        <h2 id="qualityInvalid">--</h2>
+                    </article>
+
+                    <article class="mini-card">
+                        <span>Total Issues</span>
+                        <h2 id="qualityIssues">--</h2>
+                    </article>
+
+                </div>
+
+
+                <div id="qualityStatus" class="quality-status">
+                    Waiting for validation...
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <p>
+                AquaSentinel © 2026 |
+                Urban Water-Loss Detection and
+                Conservation Decision Support System
+            </p>
+
+            <p>
+                Rule-based monitoring and advisory platform
+            </p>
+
+            <p>
+                Demonstration using illustrative sample data.
+                Not connected to live municipal sensors.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

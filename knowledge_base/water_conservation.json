@@ -1,0 +1,157 @@
+
+{
+  "knowledge_base": [
+    {
+      "id": "KB001",
+      "category": "household",
+      "title": "Reduce water usage during bathing",
+      "keywords": [
+        "bathing",
+        "shower",
+        "bath",
+        "household",
+        "daily usage"
+      ],
+      "content": "Reducing bathing time and avoiding unnecessary running water can help households conserve water.",
+      "actions": [
+        "Keep bathing time short.",
+        "Turn off the tap when water is not needed.",
+        "Use a bucket where practical instead of a long shower."
+      ],
+      "priority": "Medium"
+    },
+    {
+      "id": "KB002",
+      "category": "household",
+      "title": "Prevent tap leakage",
+      "keywords": [
+        "tap",
+        "faucet",
+        "leak",
+        "dripping",
+        "household"
+      ],
+      "content": "A leaking tap can waste water continuously. Regular inspection and timely repair can reduce unnecessary water loss.",
+      "actions": [
+        "Check taps for continuous dripping.",
+        "Repair or replace damaged washers.",
+        "Contact a plumber if the leakage continues."
+      ],
+      "priority": "High"
+    },
+    {
+      "id": "KB003",
+      "category": "household",
+      "title": "Use water-efficient appliances",
+      "keywords": [
+        "washing machine",
+        "appliances",
+        "laundry",
+        "efficient"
+      ],
+      "content": "Using appliances efficiently can reduce household water consumption.",
+      "actions": [
+        "Run the washing machine with a suitable full load.",
+        "Choose water-efficient appliances when replacement is needed.",
+        "Avoid unnecessary repeated washing cycles."
+      ],
+      "priority": "Medium"
+    },
+    {
+      "id": "KB004",
+      "category": "household",
+      "title": "Reuse suitable household water",
+      "keywords": [
+        "reuse",
+        "recycling",
+        "plants",
+        "gardening",
+        "greywater"
+      ],
+      "content": "Some lightly used water, such as suitable leftover water from washing vegetables, may be reused for non-drinking purposes.",
+      "actions": [
+        "Reuse suitable vegetable-washing water for plants.",
+        "Use collected rainwater for gardening where practical.",
+        "Never reuse contaminated water for drinking or cooking."
+      ],
+      "priority": "Medium"
+    },
+    {
+      "id": "KB005",
+      "category": "network",
+      "title": "Investigate high water loss",
+      "keywords": [
+        "high loss",
+        "water loss",
+        "leakage",
+        "zone",
+        "distribution"
+      ],
+      "content": "A high difference between supplied and consumed water may indicate leakage, meter problems, or measurement errors. Further investigation is required before confirming the cause.",
+      "actions": [
+        "Inspect pipelines and visible joints.",
+        "Verify inlet and outlet meter readings.",
+        "Compare readings with historical records.",
+        "Record inspection findings."
+      ],
+      "priority": "High"
+    },
+    {
+      "id": "KB006",
+      "category": "network",
+      "title": "Investigate low water pressure",
+      "keywords": [
+        "low pressure",
+        "pressure",
+        "pipeline",
+        "pump",
+        "distribution"
+      ],
+      "content": "Unusually low pressure may be associated with leakage, pump issues, blockage, or sensor problems. The cause should be verified through inspection.",
+      "actions": [
+        "Check pressure sensor readings.",
+        "Inspect pumps and pipeline connections.",
+        "Compare pressure with normal operating conditions."
+      ],
+      "priority": "High"
+    },
+    {
+      "id": "KB007",
+      "category": "network",
+      "title": "Verify unusual flow differences",
+      "keywords": [
+        "flow",
+        "inlet flow",
+        "outlet flow",
+        "meter",
+        "measurement"
+      ],
+      "content": "An unusual difference between inlet and outlet flow readings may indicate water loss or measurement problems.",
+      "actions": [
+        "Verify inlet and outlet meter readings.",
+        "Check sensors for incorrect measurements.",
+        "Investigate the pipeline if unusual readings continue."
+      ],
+      "priority": "Medium"
+    },
+    {
+      "id": "KB008",
+      "category": "data_quality",
+      "title": "Handle missing or invalid readings",
+      "keywords": [
+        "missing data",
+        "invalid data",
+        "sensor",
+        "data quality",
+        "validation"
+      ],
+      "content": "Missing, negative, or inconsistent readings can affect anomaly detection. Invalid records should be reviewed before making decisions.",
+      "actions": [
+        "Check missing and invalid readings.",
+        "Verify sensor and meter records.",
+        "Do not treat incomplete data as confirmed leakage."
+      ],
+      "priority": "High"
+    }
+  ]
+}

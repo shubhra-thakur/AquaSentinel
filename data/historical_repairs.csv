@@ -1,0 +1,6 @@
+zone,repair_date,issue_type,leakage_confirmed,repair_status
+Zone A,2025-12-10,Pipe Leakage,Yes,Repaired
+Zone B,2025-12-15,Pressure Drop,Yes,Repaired
+Zone C,2025-12-20,Pipe Leakage,No,Investigated
+Zone D,2025-12-25,Major Leakage,Yes,Pending
+Zone E,2025-12-28,Meter Issue,Yes,Repaired
